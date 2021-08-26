@@ -24,8 +24,10 @@ addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
 addVectors (x1, y1) (x2, y2) =  ( x1 + x2, y1 + y2)
 
 head' :: [a] -> a
-head' [] = error "Can't call head on an empty list, dummy!"
-head' (x:_) = x
+-- head' [] = error "Can't call head on an empty list, dummy!"
+-- head' (x:_) = x
+head' xs = case xs of [] -> error "No head for empty list!"
+                      (x:_) -> x
 
 tell :: (Show a) => [a] -> String
 tell [] = "The list is empty"
