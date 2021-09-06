@@ -1,5 +1,7 @@
-boomBangs xs = [if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
+infixr 5 :-:  
+data List a = Empty | a :-: (List a) deriving (Show, Read, Eq, Ord)
 
-length' xs = sum [ 1 | _ <- xs]
-
-removeNonUpperCase st = [c | c <- st, c `elem` ['A'..'Z']]
+infixr 5 .++
+(.++) :: List a -> List a -> List a
+Empty .++ ys  = ys
+(x :-: xs) .++ ys = x :-: (xs .++ ys)
